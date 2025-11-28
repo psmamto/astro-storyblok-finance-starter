@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro'
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+import * as locales from '../locales'
+
+const language = 'pl'
+const translate = locales[language] || locales.en
+
+const siteSettings = {
+  content: {
+    logo: { filename: "/images/logo.png", alt: "Dream Home Logo" },
+    navigation: [
+      { label: "Strona Główna", url: "/" },
+      { label: "Nieruchomości", url: "/properties" },
+      { label: "Agenci", url: "/agents" },
+      { label: "Kontakt", url: "/contact" }
+    ],
+    phone: "+48 123 456 789",
+    email: "kontakt@dreamhome.pl",
+    company_description: "Twój zaufany partner w poszukiwaniu wymarzonego domu."
+  }
+}
+
+const story = {
+  content: {
+    component: "page",
+    metatags: {
+      title: "Kontakt - Dream Home",
+      description: "Skontaktuj się z nami.",
+      og_title: "Kontakt - Dream Home",
+      og_description: "Skontaktuj się z nami."
+    },
+    body: [
+      {
+        component: "banner_cta",
+        _uid: "contact-1",
+        headline: "Skontaktuj się z nami\n\nTelefon: +48 123 456 789\nEmail: kontakt@dreamhome.pl\nAdres: Ul. Luksusowa 1, Warszawa",
+        image: { filename: "/images/hero-house.png", alt: "Background" },
+        button: []
+      }
+    ]
+  }
+}
+---
+
+<Layout blok={story.content} siteSettings={siteSettings.content} langSwitch={{}} language={language} translate={translate}>
+  <StoryblokComponent blok={story.content} language={language} translate={translate} />
+</Layout>

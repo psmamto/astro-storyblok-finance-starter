@@ -8,7 +8,7 @@ const { siteSettings, language, langSwitch, translate, blok } = Astro.props
 const seo = blok.metatags
 
 const colors = await getDatasource('colors')
-const primaryColor = colors.primary
+const primaryColor = colors.primary || '#0C2D48'
 ---
 
 <!DOCTYPE html>

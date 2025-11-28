@@ -8,6 +8,7 @@ const { blok } = Astro.props
 
   <div class="relative min-h-[82vh] flex items-end pt-40 before:absolute before:inset-0 before:bg-black/55 before:mix-blend-multiply before:z-10">
 
+    {blok.image.filename.includes('storyblok.com') ? (
     <picture class="absolute z-0 w-full h-full object-cover object-top">
       <source
         srcset={`${blok.image.filename}/m/640x685/`}
@@ -27,6 +28,13 @@ const { blok } = Astro.props
         class="absolute z-0 w-full h-full object-cover object-top"
       />
     </picture>
+    ) : (
+      <img
+        src={blok.image.filename}
+        alt={blok.image.alt}
+        class="absolute z-0 w-full h-full object-cover object-top"
+      />
+    )}
 
     <div class="relative z-20 w-full pt-10">
       <div class="max-w-[624px] mx-auto mb-28 px-6 flex flex-col gap-y-8 justify-center items-center">

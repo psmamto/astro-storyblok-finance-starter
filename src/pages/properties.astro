@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro'
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+import * as locales from '../locales'
+
+const language = 'pl'
+const translate = locales[language] || locales.en
+
+const siteSettings = {
+  content: {
+    logo: { filename: "/images/logo.png", alt: "Dream Home Logo" },
+    navigation: [
+      { label: "Strona Główna", url: "/" },
+      { label: "Nieruchomości", url: "/properties" },
+      { label: "Agenci", url: "/agents" },
+      { label: "Kontakt", url: "/contact" }
+    ],
+    phone: "+48 123 456 789",
+    email: "kontakt@dreamhome.pl",
+    company_description: "Twój zaufany partner w poszukiwaniu wymarzonego domu."
+  }
+}
+
+const story = {
+  content: {
+    component: "page",
+    metatags: {
+      title: "Nieruchomości - Dream Home",
+      description: "Przeglądaj nasze najnowsze oferty.",
+      og_title: "Nieruchomości - Dream Home",
+      og_description: "Przeglądaj nasze najnowsze oferty."
+    },
+    body: [
+      {
+        component: "features_section",
+        _uid: "properties-1",
+        title: "Nasze Nieruchomości",
+        features: [
+          { title: "Willa z Basenem", description: "Luksusowa willa z prywatnym basenem i ogrodem.", image: { filename: "/images/hero-house.png", alt: "Willa" } },
+          { title: "Apartament w Centrum", description: "Nowoczesny apartament w sercu miasta.", image: { filename: "/images/feature-interior.png", alt: "Apartament" } },
+          { title: "Dom z Ogrodem", description: "Idealny dom dla rodziny z pięknym ogrodem.", image: { filename: "/images/feature-garden.png", alt: "Dom" } },
+          { title: "Rezydencja Letnia", description: "Spokojna rezydencja na obrzeżach.", image: { filename: "/images/feature-pool.png", alt: "Rezydencja" } }
+        ]
+      }
+    ]
+  }
+}
+---
+
+<Layout blok={story.content} siteSettings={siteSettings.content} langSwitch={{}} language={language} translate={translate}>
+  <StoryblokComponent blok={story.content} language={language} translate={translate} />
+</Layout>

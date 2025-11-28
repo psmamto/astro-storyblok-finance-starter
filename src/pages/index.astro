@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro'
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+import * as locales from '../locales'
+
+const language = 'pl'
+const translate = locales[language] || locales.en
+
+const siteSettings = {
+  content: {
+    logo: { filename: "/images/logo.png", alt: "Dream Home Logo" },
+    navigation: [
+      { label: "Strona Główna", url: "/" },
+      { label: "Nieruchomości", url: "/properties" },
+      { label: "Agenci", url: "/agents" },
+      { label: "Kontakt", url: "/contact" }
+    ],
+    phone: "+48 123 456 789",
+    email: "kontakt@dreamhome.pl",
+    company_description: "Twój zaufany partner w poszukiwaniu wymarzonego domu."
+  }
+}
+
+const story = {
+  content: {
+    component: "page",
+    metatags: {
+      title: "Dream Home - Agencja Nieruchomości",
+      description: "Znajdź swój wymarzony dom z nami.",
+      og_title: "Dream Home - Agencja Nieruchomości",
+      og_description: "Znajdź swój wymarzony dom z nami."
+    },
+    body: [
+      {
+        component: "hero",
+        _uid: "hero-1",
+        headline: "Znajdź Swój Wymarzony Dom",
+        lead: "Odkryj luksusowe nieruchomości w najlepszych lokalizacjach.",
+        image: { filename: "/images/hero-house.png", "alt": "Luksusowy Dom" },
+        button: [{ component: "button", _uid: "btn-1", label: "Zobacz Oferty", link: { url: "/properties" }, style: "primary" }],
+        partners: []
+      },
+      {
+        component: "features_section",
+        _uid: "features-1",
+        title: "Dlaczego My",
+        features: [
+          { title: "Nowoczesne Wnętrza", description: "Doświadcz najlepszego nowoczesnego stylu życia.", image: { filename: "/images/feature-interior.png", alt: "Wnętrze" } },
+          { title: "Piękne Ogrody", description: "Zrelaksuj się w swojej prywatnej oazie.", image: { filename: "/images/feature-garden.png", alt: "Ogród" } },
+          { title: "Luksusowe Baseny", description: "Zanurz się w komforcie.", image: { filename: "/images/feature-pool.png", alt: "Basen" } }
+        ]
+      },
+      {
+        component: "stats_section",
+        _uid: "stats-1",
+        stats: [
+            { value: "150+", label: "Sprzedanych Domów" },
+            { value: "50+", label: "Doświadczonych Agentów" },
+            { value: "10+", label: "Lat na Rynku" }
+        ]
+      },
+      {
+        component: "banner_cta",
+        _uid: "cta-1",
+        headline: "Gotowy na przeprowadzkę? Skontaktuj się z nami już dziś.",
+        image: { filename: "/images/hero-house.png", alt: "Background" },
+        button: [{ component: "button", _uid: "btn-2", label: "Skontaktuj się", link: { url: "/contact" }, style: "primary" }]
+      }
+    ]
+  }
+}
+---
+
+<Layout blok={story.content} siteSettings={siteSettings.content} langSwitch={{}} language={language} translate={translate}>
+  <StoryblokComponent blok={story.content} language={language} translate={translate} />
+</Layout>

@@ -11,6 +11,7 @@ const { blok } = Astro.props
     <ul class="grid md:grid-cols-2 gap-y-16 gap-x-5">
       {blok.members && blok.members.map((member) => (
         <li class="relative group">
+          {member.image.filename.includes('storyblok.com') ? (
           <Image
             class="block w-full"
             src={`${member.image.filename}/m/1078x0`}
@@ -20,6 +21,16 @@ const { blok } = Astro.props
             layout="full-width"
             loading="lazy"
           />
+          ) : (
+            <img
+              class="block w-full"
+              src={member.image.filename}
+              alt={member.image.alt}
+              width="539"
+              height="315"
+              loading="lazy"
+            />
+          )}
           <div class="flex items-center justify-between gap-2 mt-4 text-black">
             <h3 class="text-2xl">{member.name}</h3>
             <span class="text-sm">{member.role}</span>

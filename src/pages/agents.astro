@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro'
+import StoryblokComponent from '@storyblok/astro/StoryblokComponent.astro'
+import * as locales from '../locales'
+
+const language = 'pl'
+const translate = locales[language] || locales.en
+
+const siteSettings = {
+  content: {
+    logo: { filename: "/images/logo.png", alt: "Dream Home Logo" },
+    navigation: [
+      { label: "Strona Główna", url: "/" },
+      { label: "Nieruchomości", url: "/properties" },
+      { label: "Agenci", url: "/agents" },
+      { label: "Kontakt", url: "/contact" }
+    ],
+    phone: "+48 123 456 789",
+    email: "kontakt@dreamhome.pl",
+    company_description: "Twój zaufany partner w poszukiwaniu wymarzonego domu."
+  }
+}
+
+const story = {
+  content: {
+    component: "page",
+    metatags: {
+      title: "Nasi Agenci - Dream Home",
+      description: "Poznaj nasz zespół doświadczonych agentów.",
+      og_title: "Nasi Agenci - Dream Home",
+      og_description: "Poznaj nasz zespół doświadczonych agentów."
+    },
+    body: [
+      {
+        component: "team_section",
+        _uid: "team-1",
+        title: "Nasz Zespół",
+        members: [
+          { name: "Anna Nowak", role: "Senior Agent", image: { filename: "/images/agent-1.png", alt: "Anna Nowak" }, link: { cached_url: "#" } },
+          { name: "Piotr Kowalski", role: "Agent", image: { filename: "/images/agent-2.png", alt: "Piotr Kowalski" }, link: { cached_url: "#" } }
+        ]
+      }
+    ]
+  }
+}
+---
+
+<Layout blok={story.content} siteSettings={siteSettings.content} langSwitch={{}} language={language} translate={translate}>
+  <StoryblokComponent blok={story.content} language={language} translate={translate} />
+</Layout>

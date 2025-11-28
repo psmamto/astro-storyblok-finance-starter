@@ -12,6 +12,7 @@ const { blok } = Astro.props
       {blok.features && blok.features.map((feature) => (
         <li class="bg-white">
           <h3 class="p-6 text-black text-xl font-adamina capitalize">{feature.title}</h3>
+          {feature.image.filename.includes('storyblok.com') ? (
           <Image
             src={`${feature.image.filename}/m/700x0`}
             alt={feature.image.alt}
@@ -20,6 +21,16 @@ const { blok } = Astro.props
             layout="full-width"
             loading="lazy"
           />
+          ) : (
+            <img
+              src={feature.image.filename}
+              alt={feature.image.alt}
+              width="350"
+              height="242"
+              loading="lazy"
+              class="w-full h-auto"
+            />
+          )}
           <p class="p-6 text-black opacity-65">{feature.description}</p>
         </li>
       ))}
